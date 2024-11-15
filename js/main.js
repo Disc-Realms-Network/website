@@ -70,3 +70,26 @@ function closeModal() {
     const modal = document.getElementById("update-modal");
     modal.classList.remove("show"); // Remove 'show' class to hide modal with transition
 }
+
+// Fetch Minecraft Server Status
+async function fetchServerStatus() {
+    try {
+        const response = await fetch('https://api.mcsrvstat.us/2/play.discrealms.net'); // Replace with your preferred Minecraft status API
+        const data = await response.json();
+
+        // Update the server status section
+        document.getElementById('server-motd').innerHTML = data.motd?.clean?.join(' ') || 'Unavailable';
+        document.getElementById('server-players').innerHTML = `${data.players?.online || 0} / ${data.players?.max || 'Unknown'}`;
+    } catch (error) {
+        console.error('Error fetching server status:', error);
+        document.getElementById('server-motd').innerText = 'Error fetching MOTD.';
+        document.getElementById('server-players').innerText = 'Error fetching player count.';
+    }
+}
+
+// Load Navbar and Footer
+document.getElementById('navbar').innerHTML = `<nav>Disc Realms Network Navigation</nav>`;
+document.getElementById('footer').innerHTML = `<footer>© 2024 Disc Realms Network. All rights reserved.</footer>`;
+
+// Initialize the server status fetch
+fetchServerStatus();

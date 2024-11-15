@@ -14,6 +14,67 @@ body {
     background-color: #232323;
 }
 
+.section {
+    padding: 20px;
+    margin: 10px;
+}
+#server-status {
+    align-self: center;
+    background-color: #2c2c2c;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    width: 90%;
+}
+#server-box-semi-anarchy {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 20px 0;
+    border-radius: 8px;
+    width: 90%;
+    overflow: hidden; /* Ensures clean edges for the rounded corners */
+}
+
+.server-title {
+    background-image: url("https://raw.githubusercontent.com/Disc-Realms-Network/cdn/main/website-assets/Media/semi-anarchybanner.png");
+    background-size: cover;
+    background-position: center;
+    padding: 60px;
+    width: 100%;
+    text-align: center;
+    color: #2c2c2c;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+.server-description {
+    background-color: #2c2c2c;
+    padding: 20px;
+    width: 100%;
+    color: #e8e8e8;
+    text-align: left;
+    border-top: none;
+    border-radius: 0 0 8px 8px; /* Connects smoothly to the title box */
+}
+
+.server-description ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.server-description li {
+    margin-bottom: 8px;
+    list-style-type: disc;
+}
+
+.server-title:hover {
+    font-size: 270%;
+    padding: 70px;
+    transition: all 1s;
+}
+
 /* Navbar Styles */
 nav {
     display: flex;
@@ -30,7 +91,7 @@ nav {
 }
 
 nav a {
-    color: white;
+    color: #e8e8e8;
     text-decoration: none;
     padding: 10px 20px;
     font-size: 18px;
@@ -64,6 +125,12 @@ nav a:hover {
     border: 1px solid #393939;
     padding: 10px;
     border-radius: 5px;
+    transition: 1s;
+}
+
+.update-item:hover {
+    transform: scale(1.01);
+    transition: 1s;
 }
 
 .update-thumbnail {
@@ -74,7 +141,7 @@ nav a:hover {
 
 .update-summary {
     display: flex;
-    color: white;
+    color: #e8e8e8;
     flex-direction: column;
     justify-content: center;
 }
@@ -86,7 +153,7 @@ nav a:hover {
 .update-summary button {
     padding: 5px 10px;
     background-color: #333;
-    color: #303030;
+    color: #e8e8e8;
     border: none;
     cursor: pointer;
     border-radius: 3px;
@@ -118,7 +185,7 @@ nav a:hover {
     position: relative;
     display: flex;
     flex-direction: column;
-    color: white;
+    color: #e8e8e8;
     background-color: #272727;
     padding: 20px;
     max-width: 800px;
@@ -146,7 +213,14 @@ nav a:hover {
     right: 10px;
     font-size: 24px;
     cursor: pointer;
-    color: #333;
+    color: #e8e8e8;
+    transition: all 0.5s;
+
+}
+
+.close-btn:hover {
+    transition: all 0.5s;
+    color: crimson;
 }
 
 /* Add smooth fade-in/fade-out transitions */
@@ -172,7 +246,7 @@ nav a:hover {
 /* Footer Styles */
 footer {
     background-color: #232323;
-    color: white;
+    color: #e8e8e8;
 
     padding: 20px;
     text-align: center;
@@ -182,7 +256,7 @@ footer {
 
 .footer-links a,
 .license a {
-    color: white;
+    color: #e8e8e8;
     text-decoration: underline;
     transition: all 0.5s;
 
