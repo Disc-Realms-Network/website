@@ -87,6 +87,28 @@ async function fetchServerStatus() {
     }
 }
 
+// Function to reset all cookies
+function resetCookies() {
+    const cookies = document.cookie.split(";");
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf("=");
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+
+            // Set the cookie with an expired date
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+        }
+
+    console.log("All cookies have been reset!");
+}
+
+// Automatically reset cookies on page load
+window.onload = resetCookies;
+
+// Reset cookies when the page is closed
+window.onbeforeunload = resetCookies;
+
 // Load Navbar and Footer
 document.getElementById('navbar').innerHTML = `<nav>Disc Realms Network Navigation</nav>`;
 document.getElementById('footer').innerHTML = `<footer>© 2024 Disc Realms Network. All rights reserved.</footer>`;
