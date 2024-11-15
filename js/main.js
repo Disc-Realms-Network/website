@@ -2,17 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
     loadComponent('navbar', 'elements/navbar.html');
     loadComponent('footer', 'elements/footer.html');
     loadComponent('updates', 'elements/updates.html', () => {
-        loadUpdates(); // Run loadUpdates only after updates.html has been loaded
+        loadUpdates();
     });
 });
 
-// Function to load HTML components dynamically
 function loadComponent(id, filePath, callback) {
     fetch(filePath)
         .then(response => response.text())
         .then(data => {
             document.getElementById(id).innerHTML = data;
-            if (callback) callback(); // Run callback after component is loaded
+            if (callback) callback();
         })
         .catch(error => console.error(`Error loading ${filePath}:`, error));
 }
@@ -34,7 +33,7 @@ async function loadUpdates() {
 
         const updateItem = document.createElement("div");
         updateItem.className = "update-item";
-        updateItem.onclick = () => openUpdate(`/content/updates/${file}`); // Open modal on click
+        updateItem.onclick = () => openUpdate(`/content/updates/${file}`);
 
         updateItem.innerHTML = `
             <img src="${thumbnail}" alt="Thumbnail" class="update-thumbnail">
@@ -46,7 +45,6 @@ async function loadUpdates() {
     }
 }
 
-// Open Update in Modal
 async function openUpdate(filePath) {
     const content = await fetch(filePath).then(res => res.text());
 
@@ -58,20 +56,20 @@ async function openUpdate(filePath) {
         await loadScript("https://cdnjs.cloudflare.com/ajax/libs/marked/1.1.1/marked.min.js");
     }
 
-    const markedContent = marked.parse(mainContent); // Convert markdown to HTML
+    const markedContent = marked.parse(mainContent);
 
     document.getElementById("update-content").innerHTML = markedContent;
     const modal = document.getElementById("update-modal");
-    modal.classList.add("show"); // Add 'show' class to display modal with transition
+    modal.classList.add("show");
 }
 
 // Close Modal
 function closeModal() {
     const modal = document.getElementById("update-modal");
-    modal.classList.remove("show"); // Remove 'show' class to hide modal with transition
+    modal.classList.remove("show");
 }
 
-// Fetch Minecraft Server Status
+// Fetch Minecraft Server Status ft. ChatGPT
 async function fetchServerStatus() {
     try {
         const response = await fetch('https://api.mcsrvstat.us/2/play.discrealms.net'); // Replace with your preferred Minecraft status API
@@ -103,15 +101,9 @@ function resetCookies() {
     console.log("All cookies have been reset!");
 }
 
-// Automatically reset cookies on page load
 window.onload = resetCookies;
-
-// Reset cookies when the page is closed
 window.onbeforeunload = resetCookies;
-
-// Load Navbar and Footer
 document.getElementById('navbar').innerHTML = `<nav>Disc Realms Network Navigation</nav>`;
 document.getElementById('footer').innerHTML = `<footer>© 2024 Disc Realms Network. All rights reserved.</footer>`;
 
-// Initialize the server status fetch
 fetchServerStatus();
